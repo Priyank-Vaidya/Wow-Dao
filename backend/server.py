@@ -20,7 +20,6 @@ def function():
     return "Hello Arpit!!"
 
 
-
 @app.route('/predict', methods=['GET'])
 def function():
     reconstructed_model=tf.keras.models.load_model("model.keras")
