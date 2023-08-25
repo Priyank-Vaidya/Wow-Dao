@@ -21,10 +21,10 @@ app = Flask(__name__)
 def home():
     return "Hello Arpit!!"
 
+reconstructed_model=tf.keras.models.load_model("model.keras")
 
 @app.route('/predict', methods=['GET'])
 def predict():
-    reconstructed_model=tf.keras.models.load_model("model.keras")
     # Run the trained model on a few examples from the test set
     test_dataset = tf.data.Dataset.list_files("./*.jpg")
     test_dataset = test_dataset.map(model_functions.load_image_test)
