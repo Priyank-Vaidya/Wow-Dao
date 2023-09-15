@@ -1,10 +1,8 @@
 import tensorflow as tf
-
 import os
 import pathlib
 import time
 import datetime
-
 from matplotlib import pyplot as plt
 from IPython import display
 
@@ -16,19 +14,18 @@ def load(image_file):
   input_image = tf.cast(input_image, tf.float32)
   return input_image
 
-#### !!!!!!!!!    VERY IMPORTANT  !!!!!!!!!!!!!!!
+#### !! Note: IMPORTANT  !!!!!!!!!!!!!!!
 # This is just a dummy image, add the file path at the bottom in test_dataset to get predicted image downloaded as "predicted.jpg"
 
-inp= load("mri1.jpg")
-
+# inp= load("./mri10.jpg")
 # The facade training set consist of 400 images
+
 BUFFER_SIZE = 400
 # The batch size of 1 produced better results for the U-Net in the original pix2pix experiment
 BATCH_SIZE = 1
 # Each image is 256x256 in size
 IMG_WIDTH = 256
 IMG_HEIGHT = 256
-
 
 def resize(input_image,height, width):
   input_image = tf.image.resize(input_image, [height, width],
@@ -67,8 +64,8 @@ def downsample(filters, size, apply_batchnorm=True):
 
   return result
 
-down_model = downsample(3, 4)
-down_result = down_model(tf.expand_dims(inp, 0))
+# down_model = downsample(3, 4)
+# down_result = down_model(tf.expand_dims(inp, 0))
 # print (down_result.shape)
 
 def upsample(filters, size, apply_dropout=False):
@@ -90,8 +87,8 @@ def upsample(filters, size, apply_dropout=False):
 
   return result
 
-up_model = upsample(3, 4)
-up_result = up_model(down_result)
+# up_model = upsample(3, 4)
+# up_result = up_model(down_result)
 # print (up_result.shape)
 
 def Generator():
@@ -147,11 +144,11 @@ def Generator():
   return tf.keras.Model(inputs=inputs, outputs=x)
 
 
-generator = Generator()
-tf.keras.utils.plot_model(generator, show_shapes=True, dpi=64)
+# generator = Generator()
+# tf.keras.utils.plot_model(generator, show_shapes=True, dpi=64)
 
-gen_output = generator(inp[tf.newaxis, ...], training=False)
-# plt.imshow(gen_output[0, ...])
+# gen_output = generator(inp[tf.newaxis, ...], training=False)
+# # plt.imshow(gen_output[0, ...])
 # print(gen_output)
 
 LAMBDA = 100
@@ -196,11 +193,11 @@ def Discriminator():
 
   return tf.keras.Model(inputs=[inp, tar], outputs=last)
 
-discriminator = Discriminator()
-# discriminator.summary()
-tf.keras.utils.plot_model(discriminator, show_shapes=True, dpi=64)
+# discriminator = Discriminator()
+# # discriminator.summary()
+# tf.keras.utils.plot_model(discriminator, show_shapes=True, dpi=64)
 
-disc_out = discriminator([inp[tf.newaxis, ...], gen_output], training=False)
+# disc_out = discriminator([inp[tf.newaxis, ...], gen_output], training=False)
 # plt.imshow(disc_out[0, ..., -1], vmin=-20, vmax=20, cmap='RdBu_r')
 # plt.colorbar()
 
@@ -218,7 +215,6 @@ generator_optimizer = tf.keras.optimizers.Adam(2e-4, beta_1=0.5)
 discriminator_optimizer = tf.keras.optimizers.Adam(2e-4, beta_1=0.5)
 
 
-
 def generate_images(model, test_input,index):
     prediction = model(test_input, training=True)
     plt.figure(figsize=(15, 15))
@@ -229,22 +225,23 @@ def generate_images(model, test_input,index):
     plt.title(title[1])
     plt.imshow(display_list[1] * 0.5 + 0.5)
     plt.axis('off')    
-    plt.savefig("./predictions/predicted_"+str(index)+".jpg")
+    plt.savefig("./wowdao_final/backend/predictions/predicted.jpg")
+    index+=1
 
     # plt.show()   
     
 
 
-reconstructed_model=tf.keras.models.load_model("model.keras")
+# reconstructed_model=tf.keras.models.load_model("model.keras")
 
-# Run the trained model on a few examples from the test set
-test_dataset = tf.data.Dataset.list_files("./*.jpg")
-test_dataset = test_dataset.map(load_image_test)
-test_dataset = test_dataset.batch(BATCH_SIZE)                                                                                                                               
+# # Run the trained model on a few examples from the test set
+# test_dataset = tf.data.Dataset.list_files("./*.jpg")
+# test_dataset = test_dataset.map(load_image_test)
+# test_dataset = test_dataset.batch(BATCH_SIZE)                                                                                                                               
   
-index=0
-for example_input in test_dataset.take(1):
-      generate_images(reconstructed_model, example_input,index)
-      index=index+1
+# # index=0
+# for example_input in test_dataset.take(1):
+#       generate_images(reconstructed_model, example_input,index)
+#       index=index+1
 
 
