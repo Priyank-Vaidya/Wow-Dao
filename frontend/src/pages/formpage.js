@@ -4,12 +4,8 @@ import React, { useState } from "react";
 import axios from "axios";
 
 export const Formpage = () => {
-  const navigate = useNavigate();
-  const [num, setNum] = useState();
   const [imageFile, setImageFile] = useState();
-  const [description, setDescription] = useState();
   const [outputImage, setOutputImage] = useState();
-  const [outputDescription, setOutputDescription] = useState();
 
   function handleChange(e) {
     setImageFile(URL.createObjectURL(e.target.files[0]));
@@ -36,16 +32,13 @@ export const Formpage = () => {
   const handleSubmit = async (e) => {
     let data = new FormData();
     e.preventDefault();
-    data.append("description", description);
     data.append("image", imageFile);
     axios
       .post("http://localhost:5000/api/acts/pst")
       .then(
         (response) => {
           console.log(response);
-          setDescription("");
           setImageFile(null);
-          setOutputDescription(response.description);
           setOutputImage(response.image);
         },
         (error) => {
@@ -56,23 +49,11 @@ export const Formpage = () => {
 
   return (
     <>
-    <NavBar />
-      <div className="container mt-5">
+      <NavBar />
+      {/* <div className="container mt-5">
         <div className="row">
           <div className="col-md-6 offset-md-3">
             <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="textFormControlInput1">Description</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={num}
-                  onChange={(e) => setDescription(e.target.value)}
-                  id="textFormControlInput1"
-                  placeholder="Enter Activity Number:"
-                  required={true}
-                />
-              </div>
               <div className="form-group">
                 <label htmlFor="imageFormControlInput1">Image</label>
                 <input
@@ -82,7 +63,6 @@ export const Formpage = () => {
                   required={true}
                 />
               </div>
-
               <button type="submit" className="btn btn-primary">
                 Submit
               </button>
@@ -107,14 +87,6 @@ export const Formpage = () => {
                   />
                 </div>
               </div>
-              <div className="row">
-                <div className="col">
-                  <p>Description:</p>
-                </div>
-                <div className="col">
-                  <p>{outputDescription || "None"}</p>
-                </div>
-              </div>
               <button
                 type="button"
                 className="btn btn-primary"
@@ -125,7 +97,42 @@ export const Formpage = () => {
             </div>
           </div>
         </div>
+      </div> 
+      
+      <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
       </div>
+      */}
+        <div class="container text-center" style={{marginTop: '2em', paddingTop: '3em'}}>
+          <div class="row text-center">
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="imageFormControlInput1">Image</label><br></br>
+                <input
+                  type="file"
+                  onChange={handleChange}
+                  id="imageFormControlInput1"
+                  required={true}
+                />
+              </div><br></br>
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button><br></br>
+            </form>
+          </div>
+
+          <div class="row">
+            <form>
+              <img src={outputImage} className="rounded text-center" style={{marginTop:"20px"}} alt="Output Image"/><br></br><br></br>
+              <button type="button" className="btn btn-primary" onClick={handleDownload}>Download</button>
+            </form>
+          </div>
+        </div>
     </>
   );
 };
