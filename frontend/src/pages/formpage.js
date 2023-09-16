@@ -1,5 +1,4 @@
 import { NavBar } from "../components/NavBar";
-import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -49,7 +48,6 @@ export const Formpage = () => {
 
   return (
     <>
-      <NavBar />
       {/* <div className="container mt-5">
         <div className="row">
           <div className="col-md-6 offset-md-3">
@@ -108,29 +106,33 @@ export const Formpage = () => {
         </div>
       </div>
       */}
-        <div class="container text-center" style={{marginTop: '2em', paddingTop: '3em'}}>
-          <div class="row text-center">
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="imageFormControlInput1">Image</label><br></br>
-                <input
-                  type="file"
-                  onChange={handleChange}
-                  id="imageFormControlInput1"
-                  required={true}
-                />
-              </div><br></br>
-              <button type="submit" className="btn btn-primary">
-                Submit
-              </button><br></br>
-            </form>
-          </div>
+        <NavBar />
+        <div className="container-fluid d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' , marginLeft: '35vw', marginRight: '10vw'}}>
+          <div className="container text-center">
+            <div className="row" style={{ borderColor: 'black', borderStyle: 'solid', borderWidth: '2px', paddingTop: '4px',borderRadius: '15px', width: "250px", height: "250px" }}>
+              <form onSubmit={handleSubmit}>
+                <h5><blockquote style={{ paddingTop: '4px'}}>Input CT Scan</blockquote></h5><br />
+                <div className="form-group">
+                  <input className="btn btn-light"
+                    type="file"
+                    onChange={handleChange}
+                    id="imageFormControlInput1"
+                    required={true} style={{textAlign: 'center', width:'114px'}}
+                  />
+                </div><br /><br />
+                <button type="submit" className="btn btn-outline-success">
+                  Convert
+                </button>
+              </form>
+            </div><br />
 
-          <div class="row">
-            <form>
-              <img src={outputImage} className="rounded text-center" style={{marginTop:"20px"}} alt="Output Image"/><br></br><br></br>
-              <button type="button" className="btn btn-primary" onClick={handleDownload}>Download</button>
-            </form>
+            <div className="row" style={{ borderColor: 'black', borderStyle: 'solid', borderWidth: '2px',  paddingTop: '4px', borderRadius: '15px', width: "250px", height: "250px" }}>
+              <h5><blockquote style={{ paddingTop: '4px'}}>Output MRI Scan</blockquote></h5><br />
+              <form>
+                <img src={outputImage} className="rounded" style={{width: "75px", height: "75px" }} alt="Output Image" /><br /><br />
+                <button type="button" className="btn btn-outline-success" onClick={handleDownload}>Download</button>
+              </form>
+            </div>
           </div>
         </div>
     </>
