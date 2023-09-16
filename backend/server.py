@@ -18,15 +18,17 @@ app = Flask(__name__)
 
 
 @app.route('/', methods=['GET'])
-def home():
-    return "Hello Arpit!!"
+def fun():
+    return "This is the root route!!"
 
-reconstructed_model=tf.keras.models.load_model("model.keras")
+
 
 @app.route('/predict', methods=['GET'])
 def predict():
+    reconstructed_model=tf.keras.models.load_model("./wowdao_final/backend/model.keras")
     # Run the trained model on a few examples from the test set
-    test_dataset = tf.data.Dataset.list_files("./*.jpg")
+    # test_dataset = tf.data.Dataset.list_files("./*.jpg")
+    test_dataset = tf.data.Dataset.list_files("D:\MRI images\*.jpg")
     test_dataset = test_dataset.map(model_functions.load_image_test)
     test_dataset = test_dataset.batch(model_functions.BATCH_SIZE)
 
