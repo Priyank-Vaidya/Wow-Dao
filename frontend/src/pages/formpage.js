@@ -116,8 +116,11 @@ export const Formpage = () => {
                           <input className="btn btn-light"
                             type="file"
                             onChange={handleChange}
+                            
                             id="imageFormControlInput1"
-                            required={true} style={{textAlign: 'center', width:'114px'}}
+                            required={true} style={{textAlign: 'center', width: '228px',
+                            color:'white',
+                            backgroundColor: 'black'}}
                           />
                         </div><br /><br/>
                         <button type="submit" className="btn btn-outline-success">
