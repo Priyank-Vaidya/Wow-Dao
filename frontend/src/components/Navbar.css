@@ -1,0 +1,15 @@
+.nav-brand{
+    color: white;
+    text-decoration: solid;
+    font-size: 170%;
+    margin-left: 2%;
+}
+
+.btn2{
+    margin-left: 2%;
+}
+
+.navbar{
+    background-image: linear-gradient(to right top, #49008a, #70089a, #9516a9, #b925b7, #de34c4); 
+    height: 70px;
+}
