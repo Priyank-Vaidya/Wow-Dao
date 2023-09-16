@@ -3,35 +3,30 @@ import { NavBar } from '../components/NavBar';
 import imginput from '../images/mri1.jpg'
 import imgexpected from '../images/mri8.jpg'
 import imgoutput from '../images/predicted.jpg'
+import "./home.css"
+
 export const Home = () => {
     return (
         <>
-            <NavBar />
-            <br />
-            <div className='container'>
-                <div className='row'>
-                    <div className='col-lg-6'>
-                        <blockquote className='blockquote'>
-                            <p className='mb-0'>A well-known quote, contained in a blockquote element.</p>
-                        </blockquote>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        </p>
+            <NavBar /><br />
+            <div className='container-fluid' style={{marginTop: '2em', paddingTop: '3em'}}>
+                <div style={{marginTop:'2em'}} class="container text-center">
+                    <div style={{marginTop:'2em'}} class="row">
+                        <h3>Revolutionizing the healthcare sector with the power of Generative AI <br></br> in CT-MRI scan conversion</h3>
                     </div>
-                    <div className='col-lg-8'>
-                        <p>An example of the input and output:</p>
-                        <img src={imginput} style={{marginTop:"40px", marginRight:"40px"}} className='img-fluid float-left' alt='...' />
-                        <img src={imgexpected} style={{marginTop:"40px"}} className='img-fluid float-left' alt='...' />
-                        <img src={imgoutput} width={"260px"} style={{marginTop:"40px"}} className='img-fluid rounded float-right' alt='...' />
-                    </div>
-                    <div className='col-lg-12 text-center'>
-                        <blockquote className='blockquote'>
-                            <p className='mb-0 '>Made By:</p>
-                            <footer className='blockquote-footer my-2'>Team <cite title='Source Title'>Byte Hogs</cite></footer>
-                        </blockquote>
+                    <div class="row text-center" style={{marginTop:'4em',flexFlow: 'row', flex: 'row', flexShrink: 'inherit'}}>
+                        <div class="col col-lg-4 col-md-4 col-sm-4 col-xsm-4">
+                            <h5 style={{marginTop:"2em"}}>Input Image</h5>
+                            <img src={imginput} width={"70%"} style={{marginTop:"2vh" ,borderRadius: '10px'}} className='img img-fluid rounded' alt='...' />
+                        </div>
+                        <div class="col col-lg-4 col-md-4 col-sm-4 col-xsm-4">
+                            <h5 style={{marginTop:"2em"}}>Expected Image</h5>
+                            <img src={imgexpected} width={"70%"} style={{marginTop:"2vh", borderRadius: '10px'}} className='img img-fluid rounded' alt='...' />
+                        </div>
+                        <div class="col col-lg-4 col-md-4 col-sm-4 col-xsm-4">
+                            <h5 style={{marginTop:"2em"}}>Output Image</h5>
+                            <img src={imgoutput} width={"70%"} style={{marginTop:"2vh", borderRadius: '10px'}} className='img img-fluid rounded' alt='...' />
+                        </div>
                     </div>
                 </div>
             </div>
