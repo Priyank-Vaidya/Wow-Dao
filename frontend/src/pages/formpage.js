@@ -107,9 +107,9 @@ export const Formpage = () => {
       </div>
       */}
         <NavBar />
-        <div className="container-fluid d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' , marginLeft: '35vw', marginRight: '10vw'}}>
+        <div className="container-fluid d-flex justify-content-center align-items-center" style={{color:'white',minHeight: '100vh' , marginLeft: '35vw', marginRight: '10vw'}}>
           <div className="container text-center">
-            <div className="row" style={{ borderColor: 'black', borderStyle: 'solid', borderWidth: '2px', paddingTop: '4px',borderRadius: '15px', width: "250px", height: "250px" }}>
+            <div className="row" style={{ borderColor: 'white', borderStyle: 'solid', borderWidth: '2px', paddingTop: '4px',borderRadius: '15px', width: "250px", height: "250px" }}>
               <form onSubmit={handleSubmit}>
                 <h5><blockquote style={{ paddingTop: '4px'}}>Input CT Scan</blockquote></h5><br />
                 <div className="form-group">
@@ -126,10 +126,10 @@ export const Formpage = () => {
               </form>
             </div><br />
 
-            <div className="row" style={{ borderColor: 'black', borderStyle: 'solid', borderWidth: '2px',  paddingTop: '4px', borderRadius: '15px', width: "250px", height: "250px" }}>
+            <div className="row" style={{ borderColor: 'white', borderStyle: 'solid', borderWidth: '2px',  paddingTop: '4px', borderRadius: '15px', width: "250px", height: "250px" }}>
               <h5><blockquote style={{ paddingTop: '4px'}}>Output MRI Scan</blockquote></h5><br />
               <form>
-                <img src={outputImage} className="rounded" style={{width: "75px", height: "75px" }} alt="Output Image" /><br /><br />
+                <img src={outputImage} className="rounded" style={{width: "75px", height: "75px" }} alt="Output" /><br /><br />
                 <button type="button" className="btn btn-outline-success" onClick={handleDownload}>Download</button>
               </form>
             </div>

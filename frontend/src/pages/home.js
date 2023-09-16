@@ -3,31 +3,29 @@ import { NavBar } from '../components/NavBar';
 import imginput from '../images/mri1.jpg'
 import imgexpected from '../images/mri8.jpg'
 import imgoutput from '../images/predicted.jpg'
+import "./home.css"
+
 export const Home = () => {
     return (
         <>
             <NavBar /><br />
             <div className='container-fluid' style={{marginTop: '2em', paddingTop: '3em'}}>
-                <div class="container text-center">
-                    <div class="row">
-                        <h1><blockquote>ImaginAI</blockquote></h1>
-                    </div><br></br>
-                    <div class="row">
-                        <h2>We convert CT Scans - MRI Scans with help of Generative AI</h2>
-                    </div><br></br><br></br>
-
-                    <div class="row text-center" style={{flexFlow: 'row', flex: 'row', flexShrink: 'inherit'}}>
-                        <div class="col">
-                            <h5 style={{marginTop:"2vh", marginLeft: "3vw"}}>Input Image</h5>
-                            <img src={imginput} width={"230px"} style={{marginTop:"2vh", marginLeft:"3vw", borderRadius: '10px'}} className='img-fluid rounded' alt='...' />
+                <div style={{marginTop:'2em'}} class="container text-center">
+                    <div style={{marginTop:'2em'}} class="row">
+                        <h3>Revolutionizing the healthcare sector power of Generative AI <br></br> in CT-MRI scan conversion</h3>
+                    </div>
+                    <div class="row text-center" style={{marginTop:'4em',flexFlow: 'row', flex: 'row', flexShrink: 'inherit'}}>
+                        <div class="col col-lg-4 col-md-4 col-sm-4 col-xsm-4">
+                            <h5 style={{marginTop:"2em"}}>Input Image</h5>
+                            <img src={imginput} width={"70%"} style={{marginTop:"2vh" ,borderRadius: '10px'}} className='img img-fluid rounded' alt='...' />
                         </div>
-                        <div class="col">
-                            <h5 style={{marginTop:"2vh", marginLeft: "3vw"}}>Expected Image</h5>
-                            <img src={imgexpected} width={"230px"} style={{marginTop:"2vh", marginLeft:"3vw", borderRadius: '10px'}} className='img-fluid rounded' alt='...' />
+                        <div class="col col-lg-4 col-md-4 col-sm-4 col-xsm-4">
+                            <h5 style={{marginTop:"2em"}}>Expected Image</h5>
+                            <img src={imgexpected} width={"70%"} style={{marginTop:"2vh", borderRadius: '10px'}} className='img img-fluid rounded' alt='...' />
                         </div>
-                        <div class="col">
-                            <h5 style={{marginTop:"2vh", marginLeft: "3vw", marginRight: "3vw"}}>Output Image</h5>
-                            <img src={imgoutput} width={"230px"} style={{marginTop:"2vh", marginLeft:"3vw", marginRight: "3vw", borderRadius: '10px'}} className='img-fluid rounded' alt='...' />
+                        <div class="col col-lg-4 col-md-4 col-sm-4 col-xsm-4">
+                            <h5 style={{marginTop:"2em"}}>Output Image</h5>
+                            <img src={imgoutput} width={"70%"} style={{marginTop:"2vh", borderRadius: '10px'}} className='img img-fluid rounded' alt='...' />
                         </div>
                     </div>
                 </div>
