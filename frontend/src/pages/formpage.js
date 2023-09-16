@@ -107,33 +107,32 @@ export const Formpage = () => {
       </div>
       */}
         <NavBar />
-        <div className="container-fluid d-flex justify-content-center align-items-center" style={{color:'white',minHeight: '100vh' , marginLeft: '35vw', marginRight: '10vw'}}>
-          <div className="container text-center">
-            <div className="row" style={{ borderColor: 'white', borderStyle: 'solid', borderWidth: '2px', paddingTop: '4px',borderRadius: '15px', width: "250px", height: "250px" }}>
-              <form onSubmit={handleSubmit}>
-                <h5><blockquote style={{ paddingTop: '4px'}}>Input CT Scan</blockquote></h5><br />
-                <div className="form-group">
-                  <input className="btn btn-light"
-                    type="file"
-                    onChange={handleChange}
-                    id="imageFormControlInput1"
-                    required={true} style={{textAlign: 'center', width:'114px'}}
-                  />
-                </div><br /><br />
-                <button type="submit" className="btn btn-outline-success">
-                  Convert
-                </button>
-              </form>
-            </div><br />
-
-            <div className="row" style={{ borderColor: 'white', borderStyle: 'solid', borderWidth: '2px',  paddingTop: '4px', borderRadius: '15px', width: "250px", height: "250px" }}>
-              <h5><blockquote style={{ paddingTop: '4px'}}>Output MRI Scan</blockquote></h5><br />
-              <form>
-                <img src={outputImage} className="rounded" style={{width: "75px", height: "75px" }} alt="Output" /><br /><br />
-                <button type="button" className="btn btn-outline-success" onClick={handleDownload}>Download</button>
-              </form>
-            </div>
-          </div>
+        <div className="container-fluid d-flex justify-content-center align-items-center" style={{color:'white',minHeight: '100vh' , marginLeft: '10%vw', marginRight: '10%vw', justifyContent: 'space-around'}}>
+              <div class="row text-center" style={{marginTop:'4em',flexFlow: 'row', flex: 'row', flexShrink: 'inherit'}}>
+                    <div class="col col-lg-4 col-md-4 col-sm-4 col-xsm-4" style={{ borderColor: 'white', borderStyle: 'solid', borderWidth: '2px', paddingTop: '4px',borderRadius: '15px', width: "250px", height: "250px", marginRight: '30px'}}>
+                      <form onSubmit={handleSubmit}>
+                        <h5><blockquote style={{ paddingTop: '4px'}}>Input CT Scan</blockquote></h5><br />
+                        <div className="form-group">
+                          <input className="btn btn-light"
+                            type="file"
+                            onChange={handleChange}
+                            id="imageFormControlInput1"
+                            required={true} style={{textAlign: 'center', width:'114px'}}
+                          />
+                        </div><br /><br/>
+                        <button type="submit" className="btn btn-outline-success">
+                          Convert
+                        </button>
+                      </form>
+                    </div>
+                    <div class="col col-lg-4 col-md-4 col-sm-4 col-xsm-4" style={{ borderColor: 'white', borderStyle: 'solid', borderWidth: '2px',  paddingTop: '4px', borderRadius: '15px', width: "250px", height: "250px", marginLeft: '30px'}}>
+                      <h5><blockquote style={{ paddingTop: '4px'}}>Output MRI Scan</blockquote></h5><br />
+                      <form>
+                        <img src={outputImage} className="rounded" style={{width: "100px", height: "100px", marginBottom: '42px' }} alt="Output" /><br /><br />
+                        <button type="button" className="btn btn-outline-success" onClick={handleDownload}>Download</button>
+                      </form>
+                    </div>
+              </div>
         </div>
     </>
   );

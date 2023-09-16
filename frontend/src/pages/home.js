@@ -12,7 +12,7 @@ export const Home = () => {
             <div className='container-fluid' style={{marginTop: '2em', paddingTop: '3em'}}>
                 <div style={{marginTop:'2em'}} class="container text-center">
                     <div style={{marginTop:'2em'}} class="row">
-                        <h3>Revolutionizing the healthcare sector power of Generative AI <br></br> in CT-MRI scan conversion</h3>
+                        <h3>Revolutionizing the healthcare sector with the power of Generative AI <br></br> in CT-MRI scan conversion</h3>
                     </div>
                     <div class="row text-center" style={{marginTop:'4em',flexFlow: 'row', flex: 'row', flexShrink: 'inherit'}}>
                         <div class="col col-lg-4 col-md-4 col-sm-4 col-xsm-4">
