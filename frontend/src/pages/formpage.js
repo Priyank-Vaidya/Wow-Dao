@@ -5,9 +5,13 @@ import axios from "axios";
 export const Formpage = () => {
   const [imageFile, setImageFile] = useState();
   const [outputImage, setOutputImage] = useState();
+  const [selectedFileName, setSelectedFileName] = useState("");
 
   function handleChange(e) {
     setImageFile(URL.createObjectURL(e.target.files[0]));
+    const selectedFile = e.target.files[0];
+    setImageFile(selectedFile);
+    setSelectedFileName(selectedFile ? selectedFile.name : "");
   }
 
   const handleDownload = (e) => {
@@ -28,22 +32,59 @@ export const Formpage = () => {
     }
   };
 
+  // const handleSubmit = async (e) => {
+  //   console.log("Inside the handling submit button")
+  //   let data = new FormData();
+  //   e.preventDefault();
+  //   data.append("image", imageFile);
+  //   try{
+  //   axios
+  //     .post("http://localhost:5000/api/acts/pst")
+  //     .then(
+  //       (response) => {
+  //         console.log(response);
+  //         setImageFile(null);
+  //         setOutputImage(response.image);
+  //       }
+  //     } catch (error) => {
+  //         console.log(error);
+  //       }
+  //     );
+  // };
+
   const handleSubmit = async (e) => {
-    let data = new FormData();
+    console.log("Inside the handling submit button")
     e.preventDefault();
-    data.append("image", imageFile);
-    axios
-      .post("http://localhost:5000/api/acts/pst")
-      .then(
-        (response) => {
-          console.log(response);
-          setImageFile(null);
-          setOutputImage(response.image);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    const formData = new FormData();
+    formData.append("image", imageFile);
+    
+
+    try {
+      const response = await axios.post("http://localhost:5000/api/v1/predict", formData);
+      console.log(response);
+      if (response.data && response.data.blob_url) {
+        const imageUrl = response.data.blob_url;
+    
+        // Use fetch to ping the URL and trigger the download
+        fetch(imageUrl)
+          .then((response) => response.blob())
+          .then((blob) => {
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "downloaded_image.jpg";
+            document.body.appendChild(link);
+            link.click();
+            URL.revokeObjectURL(url);
+            document.body.removeChild(link);
+          });
+      } else {
+        console.error("Invalid image URL in the response.");
+      }
+      // setOutputImage(response.data.image);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -119,7 +160,12 @@ export const Formpage = () => {
                             id="imageFormControlInput1"
                             required={true} style={{textAlign: 'center', width:'114px'}}
                           />
-                        </div><br /><br/>
+                        </div>
+                        {/* Display the selected filename */}
+          {selectedFileName && (
+            <p>Selected File: {selectedFileName}</p>
+          )}
+                        <br />
                         <button type="submit" className="btn btn-outline-success">
                           Convert
                         </button>
