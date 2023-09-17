@@ -187,7 +187,7 @@ export const Formpage = () => {
                         {/* <img src={outputImage} className="rounded" style={{width: "100px", height: "100px", marginBottom: '42px' }} alt="Output" /><br /><br /> */}
                         <p>{imageStatusMessage}</p><br/>
                         {/* <button type="button" className="btn btn-outline-success" onClick={handleDownload}>Download</button> */}
-                        <a className="btn btn-outline-success" href={outputImageURL}>Download</a>
+                        <a className="btn btn-outline-success" href={outputImageURL} target="_blank">Download</a>
                       </form>
                     </div>
               </div>
