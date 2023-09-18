@@ -10,20 +10,20 @@ export const Home = () => {
         <>
             <NavBar /><br />
             <div className='container-fluid' style={{marginTop: '2em', paddingTop: '3em'}}>
-                <div style={{marginTop:'2em'}} class="container text-center">
-                    <div style={{marginTop:'2em'}} class="row">
+                <div style={{marginTop:'2em'}} className="container text-center">
+                    <div style={{marginTop:'2em'}} className="row">
                         <h3>Revolutionizing the healthcare sector with the power of Generative AI <br></br> in CT-MRI scan conversion</h3>
                     </div>
-                    <div class="row text-center" style={{marginTop:'4em',flexFlow: 'row', flex: 'row', flexShrink: 'inherit'}}>
-                        <div class="col col-lg-4 col-md-4 col-sm-4 col-xsm-4">
+                    <div className="row text-center" style={{marginTop:'4em',flexFlow: 'row', flex: 'row', flexShrink: 'inherit'}}>
+                        <div className="col col-lg-4 col-md-4 col-sm-4 col-xsm-4">
                             <h5 style={{marginTop:"2em"}}>Input Image</h5>
                             <img src={imginput} width={"70%"} style={{marginTop:"2vh" ,borderRadius: '10px'}} className='img img-fluid rounded' alt='...' />
                         </div>
-                        <div class="col col-lg-4 col-md-4 col-sm-4 col-xsm-4">
+                        <div className="col col-lg-4 col-md-4 col-sm-4 col-xsm-4">
                             <h5 style={{marginTop:"2em"}}>Expected Image</h5>
                             <img src={imgexpected} width={"70%"} style={{marginTop:"2vh", borderRadius: '10px'}} className='img img-fluid rounded' alt='...' />
                         </div>
-                        <div class="col col-lg-4 col-md-4 col-sm-4 col-xsm-4">
+                        <div className="col col-lg-4 col-md-4 col-sm-4 col-xsm-4">
                             <h5 style={{marginTop:"2em"}}>Output Image</h5>
                             <img src={imgoutput} width={"70%"} style={{marginTop:"2vh", borderRadius: '10px'}} className='img img-fluid rounded' alt='...' />
                         </div>

@@ -4,8 +4,10 @@ import axios from "axios";
 
 export const Formpage = () => {
   const [imageFile, setImageFile] = useState();
-  const [outputImage, setOutputImage] = useState();
+  //const [outputImage, setOutputImage] = useState();
   const [selectedFileName, setSelectedFileName] = useState("");
+  const [imageStatusMessage, setImageStatusMessage] = useState("Not Ready!");
+  const [outputImageURL, setOutputImageURL] = useState("");
 
   function handleChange(e) {
     setImageFile(URL.createObjectURL(e.target.files[0]));
@@ -14,23 +16,23 @@ export const Formpage = () => {
     setSelectedFileName(selectedFile ? selectedFile.name : "");
   }
 
-  const handleDownload = (e) => {
-    if (outputImage != null) {
-      const imageUrl = outputImage;
-      fetch(imageUrl)
-        .then((response) => response.blob())
-        .then((blob) => {
-          const url = URL.createObjectURL(blob);
-          const link = document.createElement("a");
-          link.href = url;
-          link.download = "downloaded_image.jpg";
-          document.body.appendChild(link);
-          link.click();
-          URL.revokeObjectURL(url);
-          document.body.removeChild(link);
-        });
-    }
-  };
+  // const handleDownload = (e) => {
+  //   if (outputImage != null) {
+  //     const imageUrl = outputImage;
+  //     fetch(imageUrl)
+  //       .then((response) => response.blob())
+  //       .then((blob) => {
+  //         const url = URL.createObjectURL(blob);
+  //         const link = document.createElement("a");
+  //         link.href = url;
+  //         link.download = "downloaded_image.jpg";
+  //         document.body.appendChild(link);
+  //         link.click();
+  //         URL.revokeObjectURL(url);
+  //         document.body.removeChild(link);
+  //       });
+  //   }
+  // };
 
   // const handleSubmit = async (e) => {
   //   console.log("Inside the handling submit button")
@@ -69,14 +71,19 @@ export const Formpage = () => {
         fetch(imageUrl)
           .then((response) => response.blob())
           .then((blob) => {
+            setImageStatusMessage("Ready!");
             const url = URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = "downloaded_image.jpg";
-            document.body.appendChild(link);
-            link.click();
-            URL.revokeObjectURL(url);
-            document.body.removeChild(link);
+            setOutputImageURL(url);
+
+            //previous stuff below. remove after testing
+
+            // const link = document.createElement("a");
+            // link.href = url;
+            // link.download = "downloaded_image.jpg";
+            // document.body.appendChild(link);
+            // link.click();
+            // URL.revokeObjectURL(url);
+            // document.body.removeChild(link);
           });
       } else {
         console.error("Invalid image URL in the response.");
@@ -138,19 +145,19 @@ export const Formpage = () => {
         </div>
       </div> 
       
-      <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+      <div className="card" style="width: 18rem;">
+        <img src="..." className="card-img-top" alt="...">
+        <div className="card-body">
+          <h5 className="card-title">Card title</h5>
+          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" className="btn btn-primary">Go somewhere</a>
         </div>
       </div>
       */}
         <NavBar />
         <div className="container-fluid d-flex justify-content-center align-items-center" style={{color:'white',minHeight: '100vh' , marginLeft: '10%vw', marginRight: '10%vw', justifyContent: 'space-around'}}>
-              <div class="row text-center" style={{marginTop:'4em',flexFlow: 'row', flex: 'row', flexShrink: 'inherit'}}>
-                    <div class="col col-lg-4 col-md-4 col-sm-4 col-xsm-4" style={{ borderColor: 'white', borderStyle: 'solid', borderWidth: '2px', paddingTop: '4px',borderRadius: '15px', width: "250px", height: "250px", marginRight: '30px'}}>
+              <div className="row text-center" style={{marginTop:'4em',flexFlow: 'row', flex: 'row', flexShrink: 'inherit'}}>
+                    <div className="col col-lg-4 col-md-4 col-sm-4 col-xsm-4" style={{ borderColor: 'white', borderStyle: 'solid', borderWidth: '2px', paddingTop: '4px',borderRadius: '15px', width: "250px", height: "250px", marginRight: '30px'}}>
                       <form onSubmit={handleSubmit}>
                         <h5><blockquote style={{ paddingTop: '4px'}}>Input CT Scan</blockquote></h5><br />
                         <div className="form-group">
@@ -174,11 +181,13 @@ export const Formpage = () => {
                         </button>
                       </form>
                     </div>
-                    <div class="col col-lg-4 col-md-4 col-sm-4 col-xsm-4" style={{ borderColor: 'white', borderStyle: 'solid', borderWidth: '2px',  paddingTop: '4px', borderRadius: '15px', width: "250px", height: "250px", marginLeft: '30px'}}>
+                    <div className="col col-lg-4 col-md-4 col-sm-4 col-xsm-4" style={{ borderColor: 'white', borderStyle: 'solid', borderWidth: '2px',  paddingTop: '4px', borderRadius: '15px', width: "250px", height: "250px", marginLeft: '30px'}}>
                       <h5><blockquote style={{ paddingTop: '4px'}}>Output MRI Scan</blockquote></h5><br />
                       <form>
-                        <img src={outputImage} className="rounded" style={{width: "100px", height: "100px", marginBottom: '42px' }} alt="Output" /><br /><br />
-                        <button type="button" className="btn btn-outline-success" onClick={handleDownload}>Download</button>
+                        {/* <img src={outputImage} className="rounded" style={{width: "100px", height: "100px", marginBottom: '42px' }} alt="Output" /><br /><br /> */}
+                        <p>{imageStatusMessage}</p><br/>
+                        {/* <button type="button" className="btn btn-outline-success" onClick={handleDownload}>Download</button> */}
+                        <a className="btn btn-outline-success" href={outputImageURL} target="_blank" rel="noopener noreferrer">Download</a>
                       </form>
                     </div>
               </div>
