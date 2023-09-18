@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavBar } from '../components/NavBar';
 import imginput from '../images/mri1.jpg'
-import imgexpected from '../images/mri8.jpg'
-import imgoutput from '../images/predicted.jpg'
+import imgexpected from '../images/ct1.jpg'
+import imgoutput from '../images/predicted.png'
 import "./home.css"
 
 export const Home = () => {
