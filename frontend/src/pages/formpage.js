@@ -57,10 +57,22 @@ export const Formpage = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", imageFile);
-    
+    formData.append("type", "ct-mri"); 
+    console.log(formData);
 
+    // The API Url based upon the radio buttons of different conversions type
+    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    // The API URl for CT-MRI Conversion is given below
+    
+    const apiUrl = "http://localhost:5000/api/v1/predict?type=ct-mri";
+
+    // For MRI-CT Conversion Please use the following link
+    // const apiUrl = "http://localhost:5000/api/v1/predict?type=mri-ct";
+
+    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     try {
-      const response = await axios.post("http://localhost:5000/api/v1/predict", formData);
+      const response = await axios.post(apiUrl, formData);
       console.log(response);
       if (response.data && response.data.blob_url) {
         const imageUrl = response.data.blob_url;
