@@ -13,6 +13,7 @@ CORS(app)
 
 # Allow requests only from localhost:3000
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
+CORS(app, resources={r"/api/*": {"origins": "https://wowdaoai.blob.core.windows.net"}})
 
 
 
@@ -76,14 +77,17 @@ def predict():
     # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     
 
-    test_dataset = tf.data.Dataset.list_files("./Input/*.jpeg")
+    test_dataset = tf.data.Dataset.list_files("./Input/*.jpg")
     test_dataset = test_dataset.map(model_functions.load_image_test)
     test_dataset = test_dataset.batch(model_functions.BATCH_SIZE)
 
 
+# Reading the Index value from the text file
+    with open('./index.txt', 'r') as file:
+        index = int(file.read())
 
     for example_input in test_dataset.take(1):
-            index=0
+            
             model_functions.generate_images(reconstructed_model, example_input,1)
             
             container_client.upload_blob(name=container_name+str(index) , data=open("./predictions/predicted1.jpg", "rb").read()) # upload the image to the container in the storage account            
@@ -91,6 +95,10 @@ def predict():
             blob_url = f"https://{blob_service_client.account_name}.blob.core.windows.net/{container_name}/{container_name+str(index)}"
             index=index+1
     print("Prediction is successfully saveed in the Azure-blob-storage")
+    
+    # Saving the state of Index value in a text file
+    with open('./index.txt', 'w') as file:
+        file.write(str(index))
     
 
     return jsonify({"blob_url" : blob_url})

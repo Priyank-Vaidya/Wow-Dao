@@ -48,23 +48,34 @@ export const Formpage = () => {
 
     // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     try {
-      const response = await axios.post(apiUrl, formData);
-      console.log(response);
-      if (response.data && response.data.blob_url) {
-        const imageUrl = response.data.blob_url;
-    
-        // Use fetch to ping the URL and trigger the download
-        fetch(imageUrl)
-          .then((response) => response.blob())
-          .then((blob) => {
-            setImageStatusMessage("Ready!");
-            const url = URL.createObjectURL(blob);
-            setOutputImageURL(url);
-          });
-      } else {
-        console.error("Invalid image URL in the response.");
-      }
-    } catch (error) {
+  const response = await axios.post(apiUrl, formData);
+  console.log(response);
+  
+  if (response.data && response.data.blob_url) {
+    const imageUrl = response.data.blob_url;
+    console.log(imageUrl);
+
+    // Use fetch to ping the URL and trigger the download
+    fetch(imageUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network Error...Please connect to the internet and try again');
+        }
+        return response.blob();
+      })
+      .then((blob) => {
+        // Handle the blob data (e.g., display or process it)
+        setImageStatusMessage("Ready!");
+        const url = URL.createObjectURL(blob);
+        setOutputImageURL(url);
+      })
+      .catch((error) => {
+        console.error('Fetch error:', error);
+      });
+  } else {
+    console.error("Invalid URL in the response");
+  }
+}   catch (error) {
       console.error(error);
     }
   };
