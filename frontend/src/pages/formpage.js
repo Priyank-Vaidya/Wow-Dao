@@ -83,9 +83,9 @@ export const Formpage = () => {
   return (
     <>
         <NavBar />
-        <div className="container-fluid d-flex justify-content-center align-items-center" style={{color:'white',minHeight: '100vh' , marginLeft: '10%vw', marginRight: '10%vw', justifyContent: 'space-around'}}>
+        <div className="container-fluid d-flex justify-content-center align-items-center" style={{color:'white',minHeight: '130vh' , marginLeft: '10%vw', marginRight: '10%vw', justifyContent: 'space-around'}}>
               <div className="row text-center" style={{marginTop:'4em',flexFlow: 'row', flex: 'row', flexShrink: 'inherit'}}>
-                    <div className="col col-lg-4 col-md-4 col-sm-4 col-xsm-4" style={{ borderColor: 'white', borderStyle: 'solid', borderWidth: '2px', paddingTop: '4px',borderRadius: '15px', width: "250px", height: "250px", marginRight: '30px'}}>
+                    <div className="col col-lg-4 col-md-4 col-sm-4 col-xsm-4" style={{ borderColor: 'white', borderStyle: 'solid', borderWidth: '2px', paddingTop: '4px',borderRadius: '15px', width: "250px", height: "300px", marginRight: '30px'}}>
                       <form onSubmit={handleSubmit}>
                         {//try removing the on submit function from form temporarily to see if this works by calling the button based functions
                         }
@@ -114,7 +114,7 @@ export const Formpage = () => {
                         </button>
                       </form>
                     </div>
-                    <div className="col col-lg-4 col-md-4 col-sm-4 col-xsm-4" style={{ borderColor: 'white', borderStyle: 'solid', borderWidth: '2px',  paddingTop: '4px', borderRadius: '15px', width: "250px", height: "250px", marginLeft: '30px'}}>
+                    <div className="col col-lg-4 col-md-4 col-sm-4 col-xsm-4" style={{ borderColor: 'white', borderStyle: 'solid', borderWidth: '2px',  paddingTop: '4px', borderRadius: '15px', width: "250px", height: "300px", marginLeft: '30px'}}>
                       <h5><blockquote style={{ paddingTop: '4px'}}>Output Image</blockquote></h5><br />
                       <form>
                         <p>{imageStatusMessage}</p><br/>
