@@ -1,22 +1,16 @@
 import React from 'react';
-
+import "./Navbar.css"
+import image from "./logo5.png"
 export const NavBar = () => {
 
     return(
-      <>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="/">WowDao AI Project</a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div className="navbar-nav">
-              <a className="nav-item nav-link active" href="/">Home <span className="sr-only">(current)</span></a>
-              <a className="nav-item nav-link" href="/formpage">Submit Scan</a>
-            </div>
-          </div>
-        </nav>
-      </>
+    <nav className="navbar bg-dark fixed-top">
+      <form className="container-fluid justify-content-start">
+        <a className="nav-brand nav-link" aria-current="page" href="/"><strong>ImaginAI</strong></a>
+        <button style={{marginLeft:'2%'}} className="btn btn-dark me-2" type="button"><a className="nav-link" aria-current="page" href="/formpage">Submit Scan</a></button>
+      </form>
+      <img style={{position:'absolute', marginLeft:'85%'}} width={'150px'} src={image} alt='none'></img>
+    </nav>
     )
 }
 

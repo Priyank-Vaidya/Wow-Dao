@@ -225,8 +225,9 @@ def generate_images(model, test_input,index):
     plt.title(title[1])
     plt.imshow(display_list[1] * 0.5 + 0.5)
     plt.axis('off')    
-    plt.savefig("./wowdao_final/backend/predictions/predicted.jpg")
+    plt.savefig("./predictions/predicted"+str(index)+".jpg")
     index+=1
+
 
     # plt.show()   
     
